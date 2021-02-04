@@ -1,3 +1,5 @@
+var URL_GET_POSTS = "http://localhost/ajax/getPosts.php";
+
 const getErrorMessageHTML = function (message) {
     return `
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -52,7 +54,7 @@ function ifResponseNotOk(node, response) {
 async function getPosts() {
 	const root = document.getElementById("root");
 	clearInnerHTML(root);
-	const response = await fetch("http://localhost/ajax/getPosts.php");
+	const response = await fetch(URL_GET_POSTS);
 	ifResponseNotOk(root, response);
 	const posts = await response.json();
 	root.append(...posts.map((post) => buildPost(post)));
@@ -61,7 +63,7 @@ async function getPosts() {
 async function getPost(post_id) {
 	const root = document.getElementById("rootOne");
 	clearInnerHTML(root);
-	const response = await fetch("http://localhost/ajax/getPosts.php?query=" + post_id);
+	const response = await fetch(URL_GET_POSTS + "?query=" + post_id);
 	ifResponseNotOk(root, response);
 	const post = await response.json();
 	"error" in post ? (root.innerHTML = getErrorMessageHTML(post.error)) : root.append(buildPost(post, true));
