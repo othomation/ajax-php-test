@@ -1,4 +1,4 @@
-var URL_GET_POSTS = "http://localhost/ajax/getPosts.php";
+var URL_GET_POSTS = "./getPosts.php";
 
 const getErrorMessageHTML = function (message) {
     return `
